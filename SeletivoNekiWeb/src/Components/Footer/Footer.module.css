@@ -1,0 +1,23 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #1E1E1E;
+    border-top: solid 1px #B3B3B3;
+}
+
+.redesSociais {
+    color: white;
+}
+
+.redesSociais a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.redesSociais a:hover {
+    opacity: 0.8;
+}

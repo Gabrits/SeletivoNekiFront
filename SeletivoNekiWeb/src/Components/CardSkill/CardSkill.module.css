@@ -1,0 +1,54 @@
+.containerGeral {
+    width: 350px;
+    height: 460px;
+    background-color: #B3B3B3;
+    border-radius: 2.5vh;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imagem {
+    max-width: 340px;
+    max-height: 190px;
+    color: #343A40;
+    background-color: aqua;
+}
+
+.titulo {
+    margin-top: -10px;
+    color: #343A40;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.descricao {
+    margin-top: -23px;
+    max-width: 70%;
+    text-align: justify;
+    font-size: 13px;
+}
+
+.level{
+    font-size: 20px;
+    font-weight: 700;
+    color: #343A40;
+    margin-top: 12px;
+}
+
+.levelBolinha {
+    display: flex;
+    gap: 5px;
+    margin-top: -4px;
+    color: #343A40;
+}
+
+.bolinha {
+    transition: filter 0.3s; 
+}
+
+.bolinha:hover {
+    filter: brightness(1.2);
+}

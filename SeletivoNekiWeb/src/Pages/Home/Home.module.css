@@ -1,0 +1,58 @@
+.containerGeral {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: auto;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardBoasVindas {
+    margin-top: 50px;
+    display: flex;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+}
+
+.divisor {
+    width: 80%;
+    border-bottom: 1px solid #B3B3B3;
+    margin-bottom: 50px;
+}
+
+.tituloHabilidades {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1.5vh;
+    margin-bottom: 4vh;
+}
+
+.tituloHabilidades h1 {
+    text-align: center;
+    color: white;
+    margin: 0;
+}
+
+
+
+.cardSkill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    flex-wrap: wrap;
+}
+
+.footer {
+    width: 100%;
+    margin-top: 15vh;
+}
+
+@media (max-width: 1024) {
+    .cardSkill{
+        display: flex;
+        flex-direction: column;
+    }
+}

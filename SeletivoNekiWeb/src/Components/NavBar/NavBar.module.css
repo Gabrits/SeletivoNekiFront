@@ -1,0 +1,37 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #1E1E1E;
+    height: 70px;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: space-between;
+    border-bottom: solid 1px#B3B3B3;
+}
+
+.logOutIcon {
+    cursor: pointer;
+    margin-right: 2vh;
+}
+
+.logoImagem {
+    align-items: center;
+    color: #B3B3B3;
+    margin-left: 2vh;
+    cursor: pointer;
+    width: 16vh;
+    height: 18vh;
+    margin-top: 6px;
+}
+
+@media (max-width: 1024) {
+    .logOutIcon {
+        margin-right: 4vh;
+    }
+}

@@ -1,0 +1,121 @@
+.cardBoasVindasContainer {
+    width: 700px;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #1E1E1E;
+    border-radius: 25px;
+}
+
+.escritaCardBoasVindas {
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.escritaCardBoasVindas p, h1 {
+    max-width: 80%;
+    color: #B3B3B3;
+    text-align: justify;
+    margin-left: 10%;
+    margin-top: -10px;
+}
+
+.escritaCardBoasVindas h1 {
+    margin-top: -20px;
+    color: white;
+}
+
+.escritaCardBoasVindas button {
+    background-color: #19536E;
+    padding: 14px 40px;
+    border-radius: 15px;
+    color: white;
+    font-family: Montserrat, sans-serif;
+    font-weight: bolder;
+    font-size: large;
+    border: none;
+    justify-content: center;
+    transition: ease 300ms;
+    cursor: pointer;
+    outline: none;
+    margin: 31px;
+    margin-top: 17px;
+}
+
+.escritaCardBoasVindas button:hover {
+    background-color: #143849;
+    transition: ease 300ms;
+}
+
+.cardJava {
+    width: 50%;
+    height: 100%;
+    background-color: #B3B3B3;
+    border-radius: 25px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imagemCardJava {
+    color: #343A40;
+}
+
+.tituloCardJava {
+    margin-top: -10px;
+    color: #343A40;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.descricaoCardJava {
+    margin-top: -33px;
+    max-width: 70%;
+    text-align: justify;
+    font-size: 12px;
+}
+
+.levelCardJava{
+    font-size: 14px;
+    font-weight: 700;
+    color: #343A40;
+    margin-top: 12px;
+}
+
+.levelBolinhaCardJava {
+    display: flex;
+    gap: 5px;
+    margin-top: -4px;
+    color: #343A40;
+}
+
+.bolinha {
+    transition: filter 0.3s; 
+}
+
+.bolinha:hover {
+    filter: brightness(1.2);
+}
+
+@media (max-width: 767px) {
+    .cardJava {
+        display: none;
+    }
+    .cardBoasVindasContainer{
+        width: 350px;
+        padding: 0;
+    }
+    .escritaCardBoasVindas{
+        width: 100%;
+    }
+}
