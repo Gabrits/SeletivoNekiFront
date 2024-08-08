@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CardBoasVindas.module.css';
 import { FaJava, FaCircle } from "react-icons/fa";
+import AdicionarSkill from '../AdicionarSkill/AdicionarSkill';
 
 function CardBoasVindas() {
   const [level, setLevel] = useState("Level Intermediário");
@@ -9,6 +10,7 @@ function CardBoasVindas() {
     "#FFC107",
     "#343A40",
   ]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleBolinha = (numero) => {
     let novasCores = ["#343A40", "#343A40", "#343A40"];
@@ -29,6 +31,9 @@ function CardBoasVindas() {
     setLevel(novoLevel);
   };
 
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   return (
     <div className={styles.cardBoasVindasContainer}>
       <div className={styles.escritaCardBoasVindas}>
@@ -39,7 +44,8 @@ function CardBoasVindas() {
             Adicione suas competências com fotos, descrições e níveis de
             proficiência. Mostre o que você sabe fazer!
           </p>
-          <button>Adicionar Habilidade</button>
+          <button onClick={openModal}>Adicionar Habilidade</button>{" "}
+          {/* Botão que abre o modal */}
         </div>
       </div>
       <div className={styles.cardJava}>
@@ -50,7 +56,10 @@ function CardBoasVindas() {
           <p>Java</p>
         </div>
         <div className={styles.descricaoCardJava}>
-          <p>Conhecimento prévio em java, com mais de 8 cursos diferentes.</p>
+          <p>
+          Java é uma linguagem orientada a objetos, versátil e 
+  amplamente usada no desenvolvimento de software.
+          </p>
         </div>
         <div className={styles.levelCardJava}>
           <p>{level}</p>
@@ -76,6 +85,8 @@ function CardBoasVindas() {
           />
         </div>
       </div>
+
+      {modalOpen && <AdicionarSkill closeModal={closeModal} />}
     </div>
   );
 }

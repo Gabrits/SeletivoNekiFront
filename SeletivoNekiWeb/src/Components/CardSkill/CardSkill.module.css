@@ -11,10 +11,13 @@
 }
 
 .imagem {
-    max-width: 340px;
-    max-height: 190px;
-    color: #343A40;
-    background-color: aqua;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    height: 190px;
+    background-color: white;
 }
 
 .titulo {

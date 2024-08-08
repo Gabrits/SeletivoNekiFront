@@ -34,13 +34,14 @@ function CardSkill() {
     <div className={styles.containerGeral}>
         <div className={styles.imagem}>
           {/* <FaJava size={180} /> */}
-          <img src=""/>
+          Imagem
+          
         </div>
         <div className={styles.titulo}>
-          <p>Java</p>
+          <p>Titulo</p>
         </div>
         <div className={styles.descricao}>
-          <p>Conhecimento prévio em java, com mais de 8 cursos diferentes.</p>
+          <p>Descrição</p>
         </div>
         <div className={styles.level}>
           <p>{level}</p>
