@@ -9,16 +9,17 @@ function NavBar() {
 
   const navigate = useNavigate();
 
-    const handleLogin = () => {
-        navigate("/login");
-      }
+      const handleLogout = () => {
+        localStorage.removeItem('token');
+         navigate('/login');
+      };
 
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
         <img src={logo} className={styles.logoImagem}/>
       </div>
-      <div className={styles.logOutIcon} onClick={handleLogin}>
+      <div className={styles.logOutIcon} onClick={handleLogout}>
         <BiLogOut size={30} />
       </div>
     </div>
