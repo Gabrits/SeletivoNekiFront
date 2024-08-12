@@ -54,7 +54,7 @@ function Login() {
         },
         body: JSON.stringify({ login, password })
       });
-
+  
       if (!response.ok) {
         if (response.status === 400) {
           const errorData = await response.json();
@@ -66,12 +66,12 @@ function Login() {
         }
         return;
       }
-
+  
       const data = await response.json();
       console.log('Autenticação bem-sucedida:', data);
-
+  
       localStorage.setItem('token', data.token);
-
+  
       if (lembrar) {
         localStorage.setItem('login', login);
         localStorage.setItem('password', password);
@@ -79,7 +79,7 @@ function Login() {
         localStorage.removeItem('login');
         localStorage.removeItem('password');
       }
-
+  
       navigate('/home');
       toast.success('Login realizado com sucesso!');
     } catch (error) {

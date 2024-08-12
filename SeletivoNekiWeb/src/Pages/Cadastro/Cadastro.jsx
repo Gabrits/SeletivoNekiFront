@@ -47,7 +47,7 @@ function Cadastro() {
         body: JSON.stringify({
           login: formData.login,
           password: formData.password,
-          role: 'USER'
+          role: 'ADMIN'
         })
       });
 

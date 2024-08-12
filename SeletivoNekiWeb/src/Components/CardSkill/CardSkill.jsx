@@ -1,9 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CardSkill.module.css';
-import { FaCircle } from "react-icons/fa";
-import {jwtDecode} from 'jwt-decode';
+import { FaCircle, FaTrashAlt } from "react-icons/fa";
+import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
-function CardSkill({ skill }) {
+const fetchWithAuth = async (url, options = {}) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Token não encontrado');
+  }
+  
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+  
+  if (response.status === 401) {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  }
+
+  return response;
+};
+
+function CardSkill({ skill, onDelete }) {
   const [level, setLevel] = useState(skill.level);
   const [corBolinha, setCorBolinha] = useState(getInitialColors(skill.level));
 
@@ -34,12 +57,18 @@ function CardSkill({ skill }) {
   const updateSkillLevel = async (newLevel) => {
     try {
       const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
-      const response = await fetch(`http://localhost:8080/usuarios/skills/${userId}/${skill.id}`, {
+
+      const response = await fetchWithAuth(`http://localhost:8080/usuarios/skills/${userId}/${skill.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           nome: skill.nome,
@@ -50,12 +79,13 @@ function CardSkill({ skill }) {
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao atualizar skills.');
+        throw new Error('Erro ao atualizar skill.');
       }
 
       setLevel(newLevel);
     } catch (error) {
       console.error('Erro ao atualizar skills:', error);
+      toast.error('Erro ao atualizar skill.');
     }
   };
 
@@ -73,8 +103,47 @@ function CardSkill({ skill }) {
     updateSkillLevel(novoLevel);
   };
 
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.userId;
+
+      const response = await fetchWithAuth(`http://localhost:8080/usuarios/skills/${userId}/${skill.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao deletar skill.');
+      }
+
+      if (onDelete) {
+        onDelete(skill.id);
+      }
+    } catch (error) {
+      console.error('Erro ao deletar skill:', error);
+      toast.error('Erro ao deletar skill.');
+    }
+  };
+
   return (
     <div className={styles.containerGeral}>
+      <div className={styles.trashContainer}>
+        <FaTrashAlt
+          className={styles.trash}
+          size={20}
+          onClick={handleDelete}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
       <div className={styles.imagem}>
         <img src={skill.imagemUrl} alt="" />
       </div>

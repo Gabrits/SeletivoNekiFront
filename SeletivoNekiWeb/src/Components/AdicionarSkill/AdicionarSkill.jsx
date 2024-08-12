@@ -1,30 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import styles from './AdicionarSkill.module.css';
+import { toast } from 'react-toastify'; // Biblioteca de toast
 
 function AdicionarSkill({ closeModal }) {
   const [skills, setSkills] = useState([]);
   const [selectedSkill, setSelectedSkill] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('INTERMEDIARIO');
+  const [userSkills, setUserSkills] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch available skills on component mount
+  // Fetch available skills and user skills on component mount
   useEffect(() => {
     const fetchSkills = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('O usuário não está autenticado.');
+        return;
+      }
+
       try {
-        const response = await fetch('http://localhost:8080/skills');
+        const response = await fetch('http://localhost:8080/skills', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
-          throw new Error("Erro ao buscar skills.");
+          throw new Error('Erro ao buscar skills. Verifique as permissões e o token.');
         }
         const data = await response.json();
         setSkills(data);
       } catch (err) {
         console.error('Erro ao buscar skills:', err);
-        setError('Erro ao buscar skills');
+        setError('Erro ao buscar skills.');
+      }
+    };
+
+    const fetchUserSkills = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('O usuário não está autenticado.');
+        return;
+      }
+
+      try {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.userId;
+
+        const response = await fetch(`http://localhost:8080/usuarios/skills/${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar habilidades do usuário. Verifique as permissões e o token.');
+        }
+        const data = await response.json();
+        setUserSkills(data);
+      } catch (err) {
+        console.error('Erro ao buscar habilidades do usuário:', err);
+        setError('Erro ao buscar habilidades do usuário.');
       }
     };
 
     fetchSkills();
+    fetchUserSkills();
   }, []);
 
   const handleAddSkill = async () => {
@@ -38,6 +79,15 @@ function AdicionarSkill({ closeModal }) {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
 
+      // Verificar se a habilidade já está associada ao usuário
+      const skillAlreadyExists = userSkills.some(skill => skill.skillId === parseInt(selectedSkill));
+
+      if (skillAlreadyExists) {
+        toast.error('Você já tem esta habilidade associada.');
+        return;
+      }
+
+      // Adicionar a nova habilidade
       const response = await fetch('http://localhost:8080/usuarios/skills', {
         method: 'POST',
         headers: {
@@ -52,14 +102,14 @@ function AdicionarSkill({ closeModal }) {
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao adicionar skill.');
+        throw new Error('Erro ao adicionar skill. Verifique as permissões e o token.');
       }
 
-      alert('Skill adicionada com sucesso');
+      toast.success('Skill adicionada com sucesso.');
       closeModal();
     } catch (err) {
       console.error('Erro ao adicionar skill:', err);
-      setError('Erro ao adicionar skill');
+      toast.error('Erro ao adicionar skill.');
     }
   };
 

@@ -10,6 +10,23 @@
     flex-direction: column;
 }
 
+.trashContainer{
+    position: absolute;
+    margin-left: 340px;
+    margin-bottom: 447px;
+    padding: 10px;
+    background-color: #9c2732;
+    border: solid 1px #121212;
+    border-radius: 70px;
+    cursor: pointer;
+}
+
+.trash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .imagem {
     display: flex;
     text-align: center;
