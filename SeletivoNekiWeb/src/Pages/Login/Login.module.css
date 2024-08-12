@@ -154,27 +154,10 @@
   font-weight: 500;
   transition: background-color 0.3s ease;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: -10px;
 }
 
 .entrar button:hover {
   background-color: #143849;
-}
-
-.cadastrarContainer {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  font-size: 0.85rem;
-  color: white;
-  margin-bottom: -10px;
-}
-
-.cadastrar p {
-  color: #19536E;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s ease;
 }
 
 .cadastrar p:hover {

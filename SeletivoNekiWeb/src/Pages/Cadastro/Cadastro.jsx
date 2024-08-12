@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Cadastro.module.css';
+import { jwtDecode } from 'jwt-decode';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ function Cadastro() {
   });
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
-  const handleLogin = () => {
-    navigate('/login');
+  const handleBack = () => {
+    navigate('/home');
   };
 
   const togglePasswordVisibility = () => {
@@ -39,15 +40,23 @@ function Cadastro() {
       return;
     }
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.userId;
+
       const response = await fetch('http://localhost:8080/auth/cadastro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           login: formData.login,
           password: formData.password,
-          role: 'ADMIN'
+          role: 'USER'
         })
       });
 
@@ -72,7 +81,7 @@ function Cadastro() {
 
   return (
     <div className={styles.containerGeral}>
-      <div className={styles.voltar} onClick={handleLogin}>
+      <div className={styles.voltar} onClick={handleBack}>
         <IoIosArrowBack size={46} style={{ cursor: "pointer" }} />
       </div>
       <div className={styles.card}>

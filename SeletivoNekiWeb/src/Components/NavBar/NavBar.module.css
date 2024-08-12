@@ -18,16 +18,37 @@
 .logOutIcon {
     cursor: pointer;
     margin-right: 2vh;
+    opacity: 80%;
+    transition: ease 0.3s;
 }
 
 .logoImagem {
     align-items: center;
     color: #B3B3B3;
     margin-left: 2vh;
-    cursor: pointer;
     width: 16vh;
     height: 18vh;
     margin-top: 6px;
+    opacity: 80%;
+}
+
+.logOutIcon:hover{
+    opacity: 100%;
+}
+
+.cadastroContainer {
+    font-size: large;
+    position: absolute;
+    left: 190px;
+    cursor: pointer;
+    color: white;
+    opacity: 80%;
+    top: 7.5px;
+    transition: ease 0.3s;
+}
+
+.cadastroContainer:hover {
+    opacity: 100%;
 }
 
 @media (max-width: 1024) {

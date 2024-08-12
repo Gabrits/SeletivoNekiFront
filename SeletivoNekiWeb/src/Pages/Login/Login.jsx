@@ -136,12 +136,6 @@ function Login() {
           <div className={styles.entrar}>
             <button type="submit">Entrar</button>
           </div>
-          <div className={styles.cadastrarContainer}>
-            <p>Não possui uma conta? </p>
-            <div className={styles.cadastrar}>
-              <p onClick={handleCadastro}> Cadastre-se</p>
-            </div>
-          </div>
         </form>
       </div>
       <ToastContainer />

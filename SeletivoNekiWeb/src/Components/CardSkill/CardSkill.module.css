@@ -19,6 +19,11 @@
     border: solid 1px #121212;
     border-radius: 70px;
     cursor: pointer;
+    transition: ease 0.3s;
+}
+
+.trashContainer:hover{
+    background-color: #5e0f0f;
 }
 
 .trash{
