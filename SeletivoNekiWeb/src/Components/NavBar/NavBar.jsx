@@ -14,10 +14,19 @@ function NavBar() {
          navigate('/login');
       };
 
+      const handleCadastro = () => {
+        navigate('/cadastro')
+      }
+
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
         <img src={logo} className={styles.logoImagem}/>
+      </div>
+      <div className={styles.cadastroContainer} onClick={handleCadastro}>
+        <p>
+        Cadastro
+        </p>
       </div>
       <div className={styles.logOutIcon} onClick={handleLogout}>
         <BiLogOut size={30} />
